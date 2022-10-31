@@ -5,7 +5,7 @@ using Catalog.Entities;
 
 namespace Catalog.Repositories
 {
-    public class InMemBookRepository
+    public class InMemBookRepository : IBookRepository
     {
         private readonly List<Book> _books = new()
         {
@@ -36,5 +36,28 @@ namespace Catalog.Repositories
             return _books.SingleOrDefault(book => book.Id == id);
         }
 
+        public void CreateBook(Book book)
+        {
+            _books.Add(book);
+        }
+
+        public void UpdateBook(Book book)
+        {
+            var index = FindIndexOfBook(book);
+            
+            _books[index] = book;
+        }
+
+        private int FindIndexOfBook(Book book)
+        {
+            return _books.FindIndex(existingBook => existingBook.Id == book.Id);
+        }
+
+        public void DeleteBook(Book book)
+        {
+            var index = FindIndexOfBook(book);
+
+            _books.RemoveAt(index);
+        }
     }
 }
