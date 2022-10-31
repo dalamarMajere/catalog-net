@@ -8,6 +8,6 @@ namespace Catalog.Entities
         public Guid Id { get; init; }
         public string Name { get; init; }
         public string Author { get; init; }       
-        public decimal PageCount { get; init; }
+        public int PageCount { get; init; }
     }
 }
