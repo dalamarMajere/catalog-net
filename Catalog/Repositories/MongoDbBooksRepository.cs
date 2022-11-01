@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using Catalog.Entities;
+using Microsoft.AspNetCore.Http.Features;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Catalog.Repositories
@@ -11,6 +14,7 @@ namespace Catalog.Repositories
         private const string CollectionName = "books";
         
         private readonly IMongoCollection<Book> _booksCollection;
+        private readonly FilterDefinitionBuilder<Book> _filterBuilder = Builders<Book>.Filter;
         
         public MongoDbBooksRepository(IMongoClient mongoClient)
         {
@@ -20,27 +24,30 @@ namespace Catalog.Repositories
         
         public IEnumerable<Book> GetBooks()
         {
-            throw new NotImplementedException();
+            return _booksCollection.Find(new BsonDocument()).ToList();
         }
 
         public Book GetBook(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = _filterBuilder.Eq(book => book.Id, id);
+            return _booksCollection.Find(filter).SingleOrDefault();
         }
 
         public void CreateBook(Book book)
         {
-            throw new NotImplementedException();
+            _booksCollection.InsertOne(book);
         }
 
         public void UpdateBook(Book book)
         {
-            throw new NotImplementedException();
+            var filter = _filterBuilder.Eq(existingBook => existingBook.Id, book.Id);
+            _booksCollection.ReplaceOne(filter, book);
         }
 
         public void DeleteBook(Book book)
         {
-            throw new NotImplementedException();
+            var filter = _filterBuilder.Eq(existingBook => existingBook.Id, book.Id);
+            _booksCollection.DeleteOne(filter);
         }
     }
 }
