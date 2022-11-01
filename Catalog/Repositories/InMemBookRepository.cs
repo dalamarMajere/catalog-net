@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Catalog.Entities;
 
 namespace Catalog.Repositories
@@ -26,38 +27,44 @@ namespace Catalog.Repositories
             }
         };
 
-        public IEnumerable<Book> GetBooks()
+        public async Task<IEnumerable<Book>> GetBooksAsync()
         {
-            return _books;
+            return await Task.FromResult(_books);
         }
 
-        public Book GetBook(Guid id)
+        public async Task<Book> GetBookAsync(Guid id)
         {
-            return _books.SingleOrDefault(book => book.Id == id);
+            var book = _books.SingleOrDefault(book => book.Id == id);
+            return await Task.FromResult(book);
         }
 
-        public void CreateBook(Book book)
+        public async Task CreateBookAsync(Book book)
         {
             _books.Add(book);
+            
+            await Task.CompletedTask;
         }
 
-        public void UpdateBook(Book book)
+        public async Task UpdateBookAsync(Book book)
         {
             var index = FindIndexOfBook(book);
             
             _books[index] = book;
+            
+            await Task.CompletedTask;
+        }
+        
+        public async Task DeleteBookAsync(Book book)
+        {
+            var index = FindIndexOfBook(book);
+
+            _books.RemoveAt(index);
+            await Task.CompletedTask;
         }
 
         private int FindIndexOfBook(Book book)
         {
             return _books.FindIndex(existingBook => existingBook.Id == book.Id);
-        }
-
-        public void DeleteBook(Book book)
-        {
-            var index = FindIndexOfBook(book);
-
-            _books.RemoveAt(index);
         }
     }
 }

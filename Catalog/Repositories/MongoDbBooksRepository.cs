@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Threading.Tasks;
 using Catalog.Entities;
 using Microsoft.AspNetCore.Http.Features;
 using MongoDB.Bson;
@@ -22,32 +23,32 @@ namespace Catalog.Repositories
             _booksCollection = database.GetCollection<Book>(CollectionName);
         }
         
-        public IEnumerable<Book> GetBooks()
+        public async Task<IEnumerable<Book>> GetBooksAsync()
         {
-            return _booksCollection.Find(new BsonDocument()).ToList();
+            return await _booksCollection.Find(new BsonDocument()).ToListAsync();
         }
 
-        public Book GetBook(Guid id)
+        public async Task<Book> GetBookAsync(Guid id)
         {
             var filter = _filterBuilder.Eq(book => book.Id, id);
-            return _booksCollection.Find(filter).SingleOrDefault();
+            return await _booksCollection.Find(filter).SingleOrDefaultAsync();
         }
 
-        public void CreateBook(Book book)
+        public async Task CreateBookAsync(Book book)
         {
-            _booksCollection.InsertOne(book);
+            await _booksCollection.InsertOneAsync(book);
         }
 
-        public void UpdateBook(Book book)
-        {
-            var filter = _filterBuilder.Eq(existingBook => existingBook.Id, book.Id);
-            _booksCollection.ReplaceOne(filter, book);
-        }
-
-        public void DeleteBook(Book book)
+        public async Task UpdateBookAsync(Book book)
         {
             var filter = _filterBuilder.Eq(existingBook => existingBook.Id, book.Id);
-            _booksCollection.DeleteOne(filter);
+            await _booksCollection.ReplaceOneAsync(filter, book);
+        }
+
+        public async Task DeleteBookAsync(Book book)
+        {
+            var filter = _filterBuilder.Eq(existingBook => existingBook.Id, book.Id);
+            await _booksCollection.DeleteOneAsync(filter);
         }
     }
 }

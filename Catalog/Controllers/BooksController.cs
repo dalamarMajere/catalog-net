@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Catalog.Dtos;
 using Catalog.Entities;
 using Catalog.Repositories;
@@ -22,16 +23,18 @@ namespace Catalog.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<BookDto> GetBooks()
+        public async Task<IEnumerable<BookDto>> GetBooksAsync()
         {
-            return _repository.GetBooks().Select(book => book.AsDto());
+            var books = (await _repository.GetBooksAsync()).
+                                        Select(book => book.AsDto());
+            return books;
         }
 
         //GET /item/{id}
         [HttpGet("{id}")]
-        public ActionResult<BookDto> GetBook(Guid id)
+        public async Task<ActionResult<BookDto>> GetBookAsync(Guid id)
         {
-            var book = _repository.GetBook(id);
+            var book = await _repository.GetBookAsync(id);
 
             if (book is null)
             {
@@ -43,7 +46,7 @@ namespace Catalog.Controllers
 
         // POST /books
         [HttpPost]
-        public ActionResult<BookDto> AddBook(CreateBookDto createBookDto)
+        public async Task<ActionResult<BookDto>> AddBookAsync(CreateBookDto createBookDto)
         {
             Book book = new()
             {
@@ -53,16 +56,16 @@ namespace Catalog.Controllers
                 PageCount = createBookDto.PageCount
             };
 
-            _repository.CreateBook(book);
+            await _repository.CreateBookAsync(book);
 
-            return CreatedAtAction(nameof(GetBook), new {id = book.Id}, book.AsDto());
+            return CreatedAtAction(nameof(GetBookAsync), new {id = book.Id}, book.AsDto());
         }
 
         // PUT /item
         [HttpPut("{id}")]
-        public ActionResult UpdateBook(Guid id, UpdateBookDto updateBookDto)
+        public async Task<ActionResult> UpdateBookAsync(Guid id, UpdateBookDto updateBookDto)
         {
-            var existingBook = _repository.GetBook(id);
+            var existingBook = await _repository.GetBookAsync(id);
 
             if (existingBook is null)
             {
@@ -76,23 +79,23 @@ namespace Catalog.Controllers
                 PageCount = updateBookDto.PageCount
             };
             
-            _repository.UpdateBook(updatedBook);
+            await _repository.UpdateBookAsync(updatedBook);
 
             return NoContent();
         }
 
         // DELETE /item/{id}
         [HttpDelete("{id}")]
-        public ActionResult DeleteItem(Guid id)
+        public async Task<ActionResult> DeleteItem(Guid id)
         {
-            var existingBook = _repository.GetBook(id);
+            var existingBook = await _repository.GetBookAsync(id);
 
             if (existingBook is null)
             {
                 return NotFound();
             }
             
-            _repository.DeleteBook(existingBook);
+            await _repository.DeleteBookAsync(existingBook);
 
             return NoContent();
         }

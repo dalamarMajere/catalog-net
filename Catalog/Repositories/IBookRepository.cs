@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Catalog.Entities;
 
 namespace Catalog.Repositories
 {
     public interface IBookRepository
     {
-        public IEnumerable<Book> GetBooks();
+        public Task<IEnumerable<Book>> GetBooksAsync();
 
-        public Book GetBook(Guid id);
+        public Task<Book> GetBookAsync(Guid id);
 
-        public void CreateBook(Book book);
-        public void UpdateBook(Book book);
-        public void DeleteBook(Book book);
+        public Task CreateBookAsync(Book book);
+        public Task UpdateBookAsync(Book book);
+        public Task DeleteBookAsync(Book book);
     }
 }
