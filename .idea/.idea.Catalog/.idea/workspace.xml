@@ -7,10 +7,7 @@
     <projectFile>Catalog/Catalog.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="091abf14-e1ba-4cb3-8e5e-d23f122d48ff" name="Default Changelist" comment="Added healthy check">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Catalog/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Catalog/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catalog/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Catalog/Startup.cs" afterDir="false" />
-    </list>
+    <list default="true" id="091abf14-e1ba-4cb3-8e5e-d23f122d48ff" name="Default Changelist" comment="Test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,23 +25,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Catalog/Repositories/MongoDbBooksRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Catalog/Settings/MongoDbSettings.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/Net/Catalog/Catalog/Repositories/MongoDbBooksRepository.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Net/Catalog/Catalog/Startup.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Catalog/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Catalog/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F695F6-91C2-45D1-9D01-5128E4E8BEDC/233/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Catalog/Startup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/Net/Catalog/Catalog/Startup.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Net/Catalog/Catalog/Settings/MongoDbSettings.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Net/Catalog/Catalog/Repositories/IBookRepository.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Catalog/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Startup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/BF8F07B0-868D-46BE-A6FD-81BEE5BAB594/4/ConfigurationBinder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Catalog/Controllers/BooksController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/Net/Catalog/Catalog/Repositories/InMemBookRepository.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Net/Catalog/Catalog/Controllers/BooksController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -149,6 +131,7 @@
       <workItem from="1667302797177" duration="69000" />
       <workItem from="1667304017246" duration="3159000" />
       <workItem from="1667316177661" duration="8102000" />
+      <workItem from="1667371762179" duration="229000" />
     </task>
     <task id="LOCAL-00001" summary="Added gitignore">
       <created>1667233796411</created>
@@ -269,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667324946872</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Test">
+      <created>1667371890028</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1667371890028</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +298,8 @@
     <MESSAGE value="Changed way of connecting to database to async" />
     <MESSAGE value="Added authentication." />
     <MESSAGE value="Added healthy check" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added healthy check" />
+    <MESSAGE value="Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
